@@ -1,0 +1,4 @@
+# Own client discovery anchor; Host apply remains a no-op.
+- insert:
+    - id: hanaworlds-shell-ui
+      name: hanaworlds-shell-ui

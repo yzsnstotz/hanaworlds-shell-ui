@@ -123,7 +123,7 @@ it('joins a renamed role provider to the real upstream bundle version', async ()
     { entryId: 'fixture:world' as never, moduleName: 'acme-voxel-world-source', enabled: true, fiberPhase: 'active' as const, readOnlyReason: 'management-required' as const },
   ] }))
   fixture.ctx.remote.pluginManager.listBundles = vi.fn(async () => ({ ok: true as const, value: [
-    { name: 'alternative-world-bundle', version: '7.8.9', enabled: true, installed: true, optional: false, removable: true,
+    { name: 'alternative-world-bundle', version: '7.8.9', enabled: true, installed: true, official: false, availability: 'profile' as const, optional: false, removable: true,
       rows: [{ rowId: 'world', moduleName: 'acme-voxel-world-source' }], overrides: [] },
   ] }))
   apply(fixture.ctx)
@@ -150,9 +150,9 @@ it('keeps roles unavailable even when a formerly hard-coded package is active', 
 it('does not invent a version when bundle ownership is ambiguous or the upstream value is absent', async () => {
   const fixture = shellFixture()
   fixture.ctx.remote.pluginManager.listBundles = vi.fn(async () => ({ ok: true as const, value: [
-    ...['owner-one', 'owner-two'].map(name => ({ name, version: '1.2.3', enabled: true, installed: true, optional: false, removable: true,
+    ...['owner-one', 'owner-two'].map(name => ({ name, version: '1.2.3', enabled: true, installed: true, official: false, availability: 'profile' as const, optional: false, removable: true,
       rows: [{ rowId: name, moduleName: 'hanaworlds-adapter-luanti' }], overrides: [] })),
-    { name: 'hanaworlds-skills', enabled: true, installed: true, optional: false, removable: true, rows: [], overrides: [] },
+    { name: 'hanaworlds-skills', enabled: true, installed: true, official: false, availability: 'profile' as const, optional: false, removable: true, rows: [], overrides: [] },
   ] }))
   apply(fixture.ctx)
   const seat = fixture.seats.find(row => row.options.id === 'hanaworlds-runtime')!

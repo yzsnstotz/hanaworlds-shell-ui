@@ -4,10 +4,14 @@ import { readFileSync, readdirSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import vm from 'node:vm'
 
+import { verifySupply } from './verify-bundle-supply.mjs'
+
+import { verifyBoundary } from './verify-contract-boundary.mjs'
+
+verifyBoundary()
 const root = new URL('../', import.meta.url)
 const manifest = JSON.parse(readFileSync(new URL('package.json', root)))
-assert.deepEqual(Object.keys(manifest.dsh), ['client'])
-assert.equal(manifest.dependencies['hanaworlds-contracts'], 'git+https://github.com/yzsnstotz/hanaworlds-contracts.git#v2.9.0')
+verifySupply(root)
 assert.deepEqual(readdirSync(new URL('lib/', root)).sort(), ['client.js', 'client.js.map', 'index.js'])
 const source = readFileSync(new URL('lib/client.js', root), 'utf8')
 assert.doesNotMatch(source, /hanaworldsDesktopView|hanaworldsDesktopWorlds|hanaworldsWorkshopTransport|hanaworldsDesktopConfig|hanaworlds_request|session\/v3|尚未接入/)

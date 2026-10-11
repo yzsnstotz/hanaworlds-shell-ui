@@ -15,23 +15,23 @@ Installed versions below are locked in package-lock.json. Dev dependencies suppl
 
 | Name | Version | License | Source | Purpose |
 | --- | --- | --- | --- | --- |
-| @deepseek-ai/cordis | 4.0.4 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/cordis-plugin-loader | 1.0.5 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-api-gateway | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-api-remotes | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-client-locale | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-client-modules | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-client-store | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-client-ui-conversation | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-client-ui-layout | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-client-ui-plugin-manager | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-client-ui-renderer | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-client-ui-settings | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-client-ui-sidebar | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-client-ui-slots | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-client-ui-theme | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-plugin-manager | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
-| @deepseek-ai/dsh-typert-protocol | 0.2.0-rc.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/cordis | 4.0.5-alpha.1 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/cordis-plugin-loader | 1.0.6-alpha.1 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-api-gateway | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-api-remotes | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-client-locale | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-client-modules | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-client-store | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-client-ui-conversation | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-client-ui-layout | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-client-ui-plugin-manager | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-client-ui-renderer | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-client-ui-settings | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-client-ui-sidebar | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-client-ui-slots | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-client-ui-theme | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-plugin-manager | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
+| @deepseek-ai/dsh-typert-protocol | 0.2.1-alpha.2 | MIT | git+https://github.com/deepseek-ai/deepseek-harness.git | public Host service declarations; Host supplies runtime |
 | @testing-library/dom | 10.4.2 | MIT | https://github.com/testing-library/dom-testing-library | build or component tests |
 | @testing-library/react | 16.3.3 | MIT | https://github.com/testing-library/react-testing-library | build or component tests |
 | @types/react | 18.3.31 | MIT | https://github.com/DefinitelyTyped/DefinitelyTyped.git | build or component tests |
@@ -73,3 +73,9 @@ Installed versions below are locked in package-lock.json. Dev dependencies suppl
 - Candidate `ea8d0cbce7ff4208ec75c762cf28bad56c2b471b` apply protection, fault
   components, upstream version reader and original plugin-isolation artifacts are
   retained. Q-21 removes its Shell-owned provider configuration.
+
+## shell-ui-host-compat-01 supply
+
+The 17 official development SDKs above are pinned to the approved DSH alpha.2/Cordis alpha.1 source and checked against its actual declarations. Runtime supply remains owned by the Host/Client: Cordis is a required exact peer (`4.0.4 || 4.0.5-alpha.1`), and React comes from the official module table. No second Host implementation is shipped. The public `dsh.bundle.patch` insert mounts only this package for normal manager enablement; Host apply remains empty. The unchanged contracts v2.9.0 tag/resolved commit is development-only for erased types and public fixture tests. Production manifest/artifacts reject its runtime import or inlining.
+
+Official source: https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.2.1-alpha.2 · MIT · commit `d743267388641bc76f17c45ce8b4c231aed1d32c`; source-entry main `6d40fee12ce01a7522ba554d802346c28c2845ae`. Normal native isolated Shell UI verification does not certify subscriptions, assembly, seed/App installation or business providers.

@@ -9,7 +9,7 @@ npm ci
 npm run build && npm test
 ```
 
-Node 24.13.1 or newer within Node 24 is required. The manifest has only `dsh.client`;
+Node 24.13.1 or newer within Node 24 is required. The manifest declares `dsh.client` and a self-owned management bundle;
 `lib/index.js` is a no-op discovery export. `lib/client.js` registers through the DSH
 module loader, with panels bundled and React resolved from the Host's shared module
 table. Published DSH service packages provide types; there are no monorepo links.
@@ -106,3 +106,13 @@ and Cordis Loader with in-memory imports, then checks its named card and a usabl
 Home control. This is component evidence, not real installation or cold-start
 acceptance. Damaged packages, transport/load repair and Electron remain outside
 this card (D-10 / D-9).
+
+## Normal Desktop management
+
+Install the packed tarball in a fresh official Desktop profile using Plugins → Add plugin → Install → Enable now. The package supplies its own `dsh.bundle.patch`: the public insert operation adds exactly one `hanaworlds-shell-ui` Host discovery anchor. Its Host `apply` stays empty; the existing `./client` artifact supplies all UI behavior through the official Client module loader. The bundle does not replace the Desktop composition or supply another Cordis/React runtime. Honor any normal restart request.
+
+The exact `hanaworlds-contracts` v2.9.0 git reference is a development SDK for erased types and public fixture tests; production artifacts must never import, load or inline its implementation. Build/test/prepack validate the real package file list, official patch/profile/manager composition, empty Host and contract runtime boundary. Fixture checks do not establish native installation, Client activation, panels or supported host versions; those require separate real UI evidence.
+
+### Verified compatibility scope
+
+The Cordis peer accepts exactly `4.0.4 || 4.0.5-alpha.1`. The original 4.0.4 source/fixture support and the official 0.2.0-rc.2 patch composition were preserved; no native 4.0.4 result is claimed. The new target is the approved `dsh-v0.2.1-alpha.2` source at `d743267388641bc76f17c45ce8b4c231aed1d32c`, delivered through source-entry main `6d40fee12ce01a7522ba554d802346c28c2845ae`: Cordis 4.0.5-alpha.1, Loader 1.0.6-alpha.1 and Client React/ReactDOM 18.3.1. A fresh isolated official Desktop profile installed and enabled Shell through the native Plugins workflow, rendered its existing Home and plugin panels, removed its contributions on disable, restored them once on enable and retained them on cold start. Missing business providers remain visible as rejected binding/UNKNOWN roles. This certifies only Shell compatibility, not complete subscriptions, ten-package assembly, worlds, models or owner acceptance.
