@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "隔离试用样例",
+    "description": "公开隔离试用输入：客户端首次 factory 主动抛错。无业务功能；此结果不代表旧 Inspector 故障已修复。"
+  }
+}

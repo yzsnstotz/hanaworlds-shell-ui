@@ -1,0 +1,59 @@
+{
+  "repository": "https://github.com/yzsnstotz/hanaworlds-desktop",
+  "baseline": "bd964cdf19785b14aa1e2f6d2a2ee350190a038f",
+  "version": "0.1.1",
+  "license": "MIT",
+  "purpose": "Component fixture only: original lazy client factory exception",
+  "files": [
+    {
+      "path": "test/fixtures/plugin-isolation/LICENSE",
+      "sourcePath": "apps/desktop/samples/plugin-isolation/LICENSE",
+      "sha256": "921940ddfcb1c9915b4d55942203a52ca8abf2e71354df85a8464f589d17c548"
+    },
+    {
+      "path": "test/fixtures/plugin-isolation/README.i18n.yaml",
+      "sourcePath": "apps/desktop/samples/plugin-isolation/README.i18n.yaml",
+      "sha256": "e9d264a47e39d9a31632c7c939c25bfc946c8e902983c13c5c942560a75dd692"
+    },
+    {
+      "path": "test/fixtures/plugin-isolation/README.md",
+      "sourcePath": "apps/desktop/samples/plugin-isolation/README.md",
+      "sha256": "a478ac755aa7ff08c8da4384e854edf9cf394bd69334f9718321500ea4ec576e"
+    },
+    {
+      "path": "test/fixtures/plugin-isolation/README.zh.md",
+      "sourcePath": "apps/desktop/samples/plugin-isolation/README.zh.md",
+      "sha256": "d6ce46e572ffa9593c4880493af6b7d9903d3ef0eb4fe6430963d37bd0282c4e"
+    },
+    {
+      "path": "test/fixtures/plugin-isolation/client.js",
+      "sourcePath": "apps/desktop/samples/plugin-isolation/client.js",
+      "sha256": "5b7836422799822eb019a56025c7e41e9d6539e1acb26db30c7c48c7b7fd3847"
+    },
+    {
+      "path": "test/fixtures/plugin-isolation/cordis.patch.yml",
+      "sourcePath": "apps/desktop/samples/plugin-isolation/cordis.patch.yml",
+      "sha256": "0b949074afa739bd757e8266ac6ad5d7a6de2d9cd54ef98ff3b50ea8679451ae"
+    },
+    {
+      "path": "test/fixtures/plugin-isolation/host.mjs",
+      "sourcePath": "apps/desktop/samples/plugin-isolation/host.mjs",
+      "sha256": "a906b093b212874ad6eeaaccc4cead32837b637f7ef63d04b3f11afc9dfa6d34"
+    },
+    {
+      "path": "test/fixtures/plugin-isolation/locale/en.json",
+      "sourcePath": "apps/desktop/samples/plugin-isolation/locale/en.json",
+      "sha256": "f94e2178c1db29ee62fe1c93b7da7a9d7b32271584079f0d8417f2dedba4fcaf"
+    },
+    {
+      "path": "test/fixtures/plugin-isolation/locale/zh.json",
+      "sourcePath": "apps/desktop/samples/plugin-isolation/locale/zh.json",
+      "sha256": "a14913472b0cedda764ee7530e80549bef79b82498543d81793e0a7805571702"
+    },
+    {
+      "path": "test/fixtures/plugin-isolation/package.json",
+      "sourcePath": "apps/desktop/samples/plugin-isolation/package.json",
+      "sha256": "236d3b40914a6a1ad9d1ae77aa8357e2fa43e4384badd07153e4c372000730b1"
+    }
+  ]
+}

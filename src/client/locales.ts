@@ -19,7 +19,7 @@ export type Key =
 /** English UI text. */
 export const en: Record<Key, string> = {
   pluginsTitle: 'HanaWorlds plugins',
-  pluginsIntro: 'Current runtime activation; package identities verified at startup. Restart after changing package files.',
+  pluginsIntro: 'Required plugin roles and their configured providers. States and versions are read from the current plugin manager; missing facts remain UNKNOWN.',
   pluginsRead: 'Read current states',
   pluginsReading: 'Reading current states…',
   pluginsRunning: 'Enabled and running',
@@ -27,7 +27,7 @@ export const en: Record<Key, string> = {
   pluginsDisabled: 'Disabled',
   pluginsUnknown: 'UNKNOWN',
   pluginsWaiting: 'Waiting for activation',
-  pluginsIdentity: 'Identity verified at startup',
+  pluginsIdentity: 'Source evidence',
   pluginsHost: 'Host',
   pluginsClient: 'Client',
   pluginsSdk: 'Installed SDK; no runtime entry',
@@ -162,7 +162,7 @@ export const en: Record<Key, string> = {
 /** Simplified Chinese UI text. */
 export const zh: Record<Key, string> = {
   pluginsTitle: 'HanaWorlds 插件',
-  pluginsIntro: '当前运行激活状态；包身份在启动时校验。更换包文件后请重启。',
+  pluginsIntro: '必需插件按角色及其配置的提供者列出。状态与版本读取当前插件管理器；缺少事实时显示 UNKNOWN。',
   pluginsRead: '读取当前状态',
   pluginsReading: '正在读取当前状态…',
   pluginsRunning: '已启用并运行',
@@ -170,7 +170,7 @@ export const zh: Record<Key, string> = {
   pluginsDisabled: '已禁用',
   pluginsUnknown: 'UNKNOWN',
   pluginsWaiting: '等待激活',
-  pluginsIdentity: '启动时校验的身份',
+  pluginsIdentity: '来源证据',
   pluginsHost: 'Host',
   pluginsClient: 'Client',
   pluginsSdk: '已安装 SDK；无运行入口',

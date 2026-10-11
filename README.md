@@ -55,3 +55,39 @@ readback, Undo, DSH installation or integrated UI acceptance.
 
 This card preserves the old controls and interactions against explicit fixtures.
 No Electron/native bridge implementation is included.
+
+## shell-ui-02 candidate: roles and fault containment
+
+Required roles are `shell-ui`, `world-source`, `canvas`, `brush`, `painter`,
+`workshop`, `skills`, `desktop-bridge`, and `local-runtime`. Role requirements
+own Host/client activation checks; provider names only identify observations.
+An unassigned role remains UNKNOWN, even if a former hard-coded package is active.
+The candidate accepts `apply(ctx, {roleProviders: {"world-source": ["provider-name"]}})`;
+several providers can be assigned to `skills` or any other role.
+
+**Integration blocker:** DSH rc.2's ordinary client boot graph carries no plugin
+configuration, and ClientEntries creates rows using `{name}` only. Its public
+pluginManager inventory carries no HanaWorlds role metadata. The above module-local
+configuration seam is component-tested, but cannot be supplied automatically by the
+ordinary Host graph. It requires an agreed role-provider source before this card
+can be completed. No new HTTP contract or name-based role inference is introduced.
+
+Versions come exclusively from `remote.pluginManager.listBundles()`; row module
+names join providers to their owning bundle. If the bundle differs from the provider,
+the version's owning bundle is named beside it. No standalone component version is
+inferred from an owning bundle's version. Missing or ambiguous ownership/version
+remains UNKNOWN. `listPlugins()` supplies Host state, while the public client Loader,
+module import errors and entry failures supply client state and original diagnostics.
+Deployment configuration no longer certifies plugin versions.
+
+Each Shell apply registration is isolated, including delayed slot callbacks and
+generators. Original failures are shown with `hanaworlds-shell-ui` in its panels
+and a Plugins fault section; unaffected registrations continue. Optional client
+failures also appear by name. The original `bd964cdf` plugin-isolation sample,
+version 0.1.1, is preserved byte for byte in `test/fixtures/plugin-isolation`.
+`provenance/plugin-isolation.json` records every file's SHA-256 and original path.
+The test executes its original factory through the published DSH ClientModuleSystem
+and Cordis Loader with in-memory imports, then checks its named card and a usable
+Home control. This is component evidence, not real installation or cold-start
+acceptance. Damaged packages, transport/load repair and Electron remain outside
+this card (D-10 / D-9).

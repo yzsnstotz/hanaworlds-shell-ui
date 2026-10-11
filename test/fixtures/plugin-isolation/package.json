@@ -1,0 +1,16 @@
+{
+  "name": "hanaworlds-isolation-trial-sample",
+  "version": "0.1.1",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "隔离试用样例：客户端首次导入主动抛错，用于真实冷启动隔离试用；无业务功能，不代表旧 Inspector 故障已修复。",
+  "engines": { "node": ">=24.0.0" },
+  "main": "./host.mjs",
+  "exports": { ".": "./host.mjs", "./client": "./client.js", "./package.json": "./package.json", "./locale/*": "./locale/*" },
+  "files": ["host.mjs", "client.js", "cordis.patch.yml", "locale", "README.md", "README.zh.md", "LICENSE"],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": { "platform": "web" }
+  }
+}

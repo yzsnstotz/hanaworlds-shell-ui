@@ -8,7 +8,7 @@ afterEach(cleanup)
 const identity = { version: '0.6.1', sourceRevision: 'FIXTURE-source', tarSha256: 'FIXTURE-tar' }
 const active = { enabled: true, phase: 'active' }
 const canvas: PluginObservation = { name: 'hanaworlds-canvas', hostRequired: true, clientRequired: true,
-  host: active, client: active, identity }
+  host: active, client: active, identity, version: '0.6.1' }
 
 it('requires both live halves and keeps installed SDK separate from runtime state', async () => {
   const read = vi.fn(async () => ({ plugins: [canvas], sdk: identity }))

@@ -43,3 +43,18 @@ Installed versions below are locked in package-lock.json. Dev dependencies suppl
 | tsdown | 0.22.14 | MIT | git+https://github.com/rolldown/tsdown.git | build or component tests |
 | typescript | 6.0.3 | Apache-2.0 | https://github.com/microsoft/TypeScript.git | build or component tests |
 | vitest | 4.1.11 | MIT | git+https://github.com/vitest-dev/vitest.git | build or component tests |
+
+## shell-ui-02 candidate fixture and test declarations
+
+- `hanaworlds-isolation-trial-sample` · 0.1.1 · MIT ·
+  https://github.com/yzsnstotz/hanaworlds-desktop, exact `bd964cdf19785b14aa1e2f6d2a2ee350190a038f`,
+  `apps/desktop/samples/plugin-isolation` · unchanged bad client factory, host discovery
+  artifact, patch, locales, README files and license used only as test input.
+  All ten file hashes and source paths are in `provenance/plugin-isolation.json`.
+- `@types/node` · 24.10.1 · MIT · https://github.com/DefinitelyTyped/DefinitelyTyped ·
+  explicit Node declarations for test-only file reads and VM evaluation of original
+  artifacts.
+- `undici-types` · 7.16.0 · MIT · https://github.com/nodejs/undici ·
+  fetch declarations required by @types/node; test/build dependency only, no shipped runtime.
+- Production continues to use the existing approved DSH/Cordis dependencies and
+  shared Host React; no new production runtime dependency or sibling module import.

@@ -11,6 +11,9 @@ export interface PluginPhase {
 /** Current Host/client activation and independently verified package identity. */
 export interface PluginObservation {
   name: string
+  role?: string
+  version?: string | null
+  versionSource?: string | null
   hostRequired: boolean
   clientRequired: boolean
   host: PluginPhase | null
@@ -40,7 +43,7 @@ export function PluginStatus({ view, read, t }: InjectFace<PluginStatusFace> & P
   return <div className={styles.panel}>
     <p>{t('pluginsIntro')}</p>
     <button type="button" onClick={() => { setRevision(value => value + 1) }}>{t('pluginsRead')}</button>
-    {error && <p role="alert">{error}</p>}
+    {error && <p role="alert">hanaworlds-shell-ui · {error}</p>}
     {!observed && !error && <p role="status">{t('pluginsReading')}</p>}
     {observed?.plugins.map((plugin) => {
       const required = [plugin.hostRequired ? plugin.host : undefined, plugin.clientRequired ? plugin.client : undefined]
@@ -49,12 +52,14 @@ export function PluginStatus({ view, read, t }: InjectFace<PluginStatusFace> & P
         : required.some(value => value?.enabled === false) ? 'pluginsDisabled'
           : required.length > 0 && required.every(value => value?.enabled === true && value.phase === 'active') ? 'pluginsRunning'
             : required.some(value => value === null) ? 'pluginsUnknown' : 'pluginsWaiting'
-      return <section key={plugin.name} data-hanaworlds-plugin={plugin.name}>
-        <h3>{plugin.name}</h3><p role="status">{t(phase)}</p>
+      return <section key={`${plugin.role ?? ''}:${plugin.name}`} data-hanaworlds-plugin={plugin.name} data-hanaworlds-role={plugin.role}>
+        <h3>{plugin.name}</h3>{plugin.role && plugin.role !== plugin.name && <p>{plugin.role}</p>}<p role="status">{t(phase)}</p>
+        {phase === 'pluginsFailed' && <p role="alert">{plugin.name} · {[plugin.host, plugin.client].filter(value => value?.phase === 'failed').map(value => value?.reason ?? t('pluginsFailed')).join(' · ')}</p>}
+        <p>{t('version')} · <span>{plugin.version ?? t('pluginsUnknown')}</span>{plugin.versionSource && plugin.versionSource !== plugin.name && ` · ${plugin.versionSource}`}</p>
         <dl className={styles.facts}>
-          <dt>{t('pluginsIdentity')}</dt><dd>{plugin.identity ? `${plugin.identity.version} · ${plugin.identity.sourceRevision} · ${plugin.identity.tarSha256}` : plugin.name}</dd>
-          {plugin.hostRequired && <><dt>{t('pluginsHost')}</dt><dd>{plugin.host?.phase ?? t('pluginsUnknown')}{plugin.host?.reason && ` · ${plugin.host.reason}`}</dd></>}
-          {plugin.clientRequired && <><dt>{t('pluginsClient')}</dt><dd>{plugin.client?.phase ?? t('pluginsUnknown')}{plugin.client?.reason && ` · ${plugin.client.reason}`}</dd></>}
+          {plugin.identity && <><dt>{t('pluginsIdentity')}</dt><dd>{plugin.identity.sourceRevision} · {plugin.identity.tarSha256}</dd></>}
+          {plugin.hostRequired && <><dt>{t('pluginsHost')}</dt><dd>{plugin.host?.phase ?? t('pluginsUnknown')}</dd></>}
+          {plugin.clientRequired && <><dt>{t('pluginsClient')}</dt><dd>{plugin.client?.phase ?? t('pluginsUnknown')}</dd></>}
         </dl>
       </section>
     })}

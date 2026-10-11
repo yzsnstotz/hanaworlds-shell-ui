@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Isolation trial sample",
+    "description": "Public isolation trial input: the first client factory deliberately throws. No business feature; this does not repair the historical Inspector failure."
+  }
+}
