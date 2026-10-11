@@ -18,7 +18,8 @@ import { SkillToolsSettings } from './SkillToolsSettings.tsx'
 import { ShellSettings } from './ShellSettings.tsx'
 import { ShellPanelIcon, type ShellPanel } from './HanaShellPage.tsx'
 import { PluginFaultStore, ShellFaultStatus, ShellPageWithFaults } from './PluginFaults.tsx'
-import { REQUIRED_PLUGIN_ROLES, parseRoleProviders, type ShellConfig } from './plugin-roles.ts'
+import { REQUIRED_PLUGIN_ROLES, readPluginRoles } from './plugin-roles.ts'
+import type { PluginRole, PluginRoles } from 'hanaworlds-contracts'
 import type { BundleInfo } from '@deepseek-ai/dsh-plugin-manager/types'
 import { en, zh, type Key } from './locales.ts'
 import { HANA_THEME_TOKENS } from './theme.ts'
@@ -35,13 +36,11 @@ const CLIENT_ACTIVE = 2 as FiberState.ACTIVE
 const CLIENT_FAILED = 3 as FiberState.FAILED
 
 /** Add HanaWorlds identity and a management section to the official Shell. */
-export function apply(ctx: ClientContext, config: ShellConfig = {}): void {
+export function apply(ctx: ClientContext): void {
   const faults = new PluginFaultStore()
   function protect<T>(operation: string, work: () => T): T | undefined {
     try { return work() } catch (error) { faults.record(operation, error); return undefined }
   }
-  let roleProviders: NonNullable<ShellConfig['roleProviders']> = {}
-  protect('role configuration', () => { roleProviders = parseRoleProviders(config) })
   // Slot callbacks can execute after apply returns. Contain both callback and generator execution.
   const slots = ctx.slots
   const safeSlots = {
@@ -92,6 +91,9 @@ export function apply(ctx: ClientContext, config: ShellConfig = {}): void {
     }, ShellPanelIcon))
   }
   const readPlugins: PluginStatusFace['read'] = async () => {
+    let roles: PluginRoles | null = null
+    let roleError = ''
+    try { roles = await readPluginRoles() } catch (error) { roleError = String(error) }
     const host = await ctx.remote.pluginManager.listPlugins()
     if (!host.ok) throw new Error(`HANAWORLDS_PLUGIN_INVENTORY_UNAVAILABLE: ${host.error.message}`)
     const bundles = await ctx.remote.pluginManager.listBundles()
@@ -115,7 +117,7 @@ export function apply(ctx: ClientContext, config: ShellConfig = {}): void {
       const owners: BundleInfo[] = bundleRows.filter(bundle => bundle.name === name || bundle.rows.some(row => row.moduleName === name))
       return owners.length === 1 ? { version: owners[0]?.version ?? null, versionSource: owners[0]?.name ?? null } : { version: null, versionSource: null }
     }
-    function observe(name: string, item: { role?: string; hostRequired: boolean; clientRequired: boolean }): PluginObservation {
+    function observe(name: string, item: { role?: PluginRole; hostRequired: boolean; clientRequired: boolean }): PluginObservation {
       const hosts = hostRows.filter(row => row.moduleName === name)
       const hostEntry = hosts.length === 1 ? hosts[0] : undefined
       const clients = client.filter(row => row.options.name === name)
@@ -128,7 +130,7 @@ export function apply(ctx: ClientContext, config: ShellConfig = {}): void {
         client: clientPhase }
     }
     const plugins = REQUIRED_PLUGIN_ROLES.flatMap(item => {
-      const providers = roleProviders[item.role] ?? []
+      const providers = roles?.providers[item.role] ?? []
       return providers.length ? providers.map(name => observe(name, item))
         : [{ ...item, name: item.role, version: null, identity: null, host: null, client: null }]
     })
@@ -138,7 +140,7 @@ export function apply(ctx: ClientContext, config: ShellConfig = {}): void {
         plugins.push(observe(failure.id, { hostRequired: false, clientRequired: true }))
       }
     }
-    return { plugins, sdk: null }
+    return { plugins, sdk: null, roles, roleError }
   }
   safeSlots.inject('plugins.item', () => safeSlots.register({
     name: 'plugins.item', id: 'hanaworlds-runtime', order: -10, label: () => t('pluginsTitle'),

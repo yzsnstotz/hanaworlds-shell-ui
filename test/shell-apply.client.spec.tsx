@@ -14,9 +14,24 @@ import { en } from '../src/client/locales.ts'
 import type { PluginStatusFace } from '../src/client/PluginStatus.tsx'
 import type { ComponentType } from 'react'
 import { installDesktopBridgeFixture } from './fixtures/desktop-bridge.ts'
+import { createPluginRolesMock, type ReadPluginRolesResponse } from 'hanaworlds-contracts'
+
+const roleFixture = JSON.parse(readFileSync(createRequire(import.meta.url).resolve('hanaworlds-contracts/fixtures/plugin-roles'), 'utf8')) as {
+  reject: { title: string; code: string; request: unknown; response: unknown }[]
+  exchanges: { title: string; wire: 'world-inspection/v1'; operation: 'ReadPluginRoles'; host: Parameters<typeof createPluginRolesMock>[0]; response: ReadPluginRolesResponse }[]
+}
+function installRoles(index = 0) {
+  const exchange = roleFixture.exchanges[index]!
+  const mock = createPluginRolesMock(exchange.host)
+  return installDesktopBridgeFixture({ reads: async url => {
+    if (url !== '/api-hanaworlds-plugin-roles') throw Error(`FIXTURE_UNEXPECTED_ROLE_ROUTE: ${url}`)
+    return mock(exchange.wire, exchange.operation, { contractVersion: exchange.wire, requestId: 'fixture:roles' })
+  } })
+}
 
 afterEach(cleanup)
 function shellFixture({ deferred = false, failTheme = false, failLocale = false, failSlot = '' } = {}) {
+  installRoles()
   const seats: { options: Record<string, unknown>; component: ComponentType<Record<string, unknown>> }[] = []
   const pending: (() => void)[] = []
   const ctx = {
@@ -67,62 +82,138 @@ it('contains delayed generator registration errors and preserves healthy panels'
   expect(alert.textContent).toContain('hanaworlds-shell-ui')
   expect(alert.textContent).toContain('FIXTURE-panel-refused')
 })
-it('uses explicit roles for alternative providers and upstream bundle versions, with required roles visible', async () => {
+it.each(roleFixture.exchanges.map((exchange, index) => ({ ...exchange, index })))('reads published roles: $title', async exchange => {
   const fixture = shellFixture()
-  installDesktopBridgeFixture({ reads: async () => ({ kind: 'DEPLOYMENT_CONFIGURATION', packages: [{ name: 'different-world-source', version: '0.0.1', sourceRevision: 'FIXTURE', tarSha256: 'FIXTURE' }] }) })
+  const http = installRoles(exchange.index)
+  apply(fixture.ctx)
+  const seat = fixture.seats.find(row => row.options.id === 'hanaworlds-runtime')!
+  const observed = await (seat.options.inject as () => PluginStatusFace)().read()
+  expect(http.calls).toEqual([{ url: '/api-hanaworlds-plugin-roles', method: 'GET', input: {} }])
+  renderSeat(seat, { view: 'page' })
+  if (exchange.response.result) {
+    const roles = exchange.response.result
+    expect(observed.roles).toEqual(roles)
+    for (const [role, providers] of Object.entries(roles.providers)) {
+      expect(observed.plugins.filter(row => row.role === role).map(row => row.name)).toEqual(providers.length ? providers : [role])
+    }
+    await screen.findByText(roles.status)
+    if (roles.status !== 'COMPLETE') {
+      const alert = screen.getByRole('alert')
+      for (const missing of roles.missingRoles) {
+        expect(alert.textContent).toContain(missing)
+        const section = document.querySelector(`[data-hanaworlds-role="${missing}"]`)!
+        expect(within(section as HTMLElement).getByText(en.pluginsMissing)).toBeTruthy()
+        expect(within(section as HTMLElement).queryByText(en.pluginsRunning)).toBeNull()
+      }
+    } else expect(screen.queryByRole('alert')).toBeNull()
+  } else {
+    expect(observed.roles).toBeNull()
+    const alert = await screen.findByRole('alert')
+    expect(alert.textContent).toContain('desktop-bridge')
+    expect(alert.textContent).toContain('CAPABILITY_UNAVAILABLE')
+    expect(alert.textContent).toContain('REQUIRED_FACT_UNKNOWN')
+    for (const role of Object.keys(roleFixture.exchanges[0]!.response.result!.providers)) expect(alert.textContent).toContain(role)
+    expect(screen.queryByText(en.pluginsRunning)).toBeNull()
+  }
+})
+it('joins a renamed role provider to the real upstream bundle version', async () => {
+  const fixture = shellFixture()
+  installRoles(1)
   fixture.ctx.remote.pluginManager.listPlugins = vi.fn(async () => ({ ok: true as const, value: [
-    { entryId: 'fixture:world' as never, moduleName: 'different-world-source', enabled: true, fiberPhase: 'active' as const, readOnlyReason: 'management-required' as const },
+    { entryId: 'fixture:world' as never, moduleName: 'acme-voxel-world-source', enabled: true, fiberPhase: 'active' as const, readOnlyReason: 'management-required' as const },
   ] }))
   fixture.ctx.remote.pluginManager.listBundles = vi.fn(async () => ({ ok: true as const, value: [
-    { name: 'different-world-source-bundle', version: '7.8.9', enabled: true, installed: true, optional: false, removable: true,
-      rows: [{ rowId: 'world', moduleName: 'different-world-source' }], overrides: [] },
+    { name: 'alternative-world-bundle', version: '7.8.9', enabled: true, installed: true, optional: false, removable: true,
+      rows: [{ rowId: 'world', moduleName: 'acme-voxel-world-source' }], overrides: [] },
   ] }))
-  Reflect.apply(apply, undefined, [fixture.ctx, { roleProviders: { 'world-source': ['different-world-source'], skills: ['different-skill-one', 'different-skill-two'] } }])
+  apply(fixture.ctx)
   const seat = fixture.seats.find(row => row.options.id === 'hanaworlds-runtime')!
-  const face = (seat.options.inject as () => PluginStatusFace)()
-  const observed = await face.read()
+  const observed = await (seat.options.inject as () => PluginStatusFace)().read()
   expect(observed.plugins.some(row => row.name === 'hanaworlds-adapter-luanti')).toBe(false)
-  expect(observed.plugins.find(row => row.name === 'different-world-source')).toMatchObject({ version: '7.8.9', versionSource: 'different-world-source-bundle', host: { phase: 'active' } })
-  expect(observed.plugins.map(row => row.name)).toEqual(expect.arrayContaining(['different-skill-one', 'different-skill-two', 'desktop-bridge', 'local-runtime']))
+  expect(observed.plugins.find(row => row.name === 'acme-voxel-world-source')).toMatchObject({ version: '7.8.9', versionSource: 'alternative-world-bundle', host: { phase: 'active' } })
   renderSeat(seat, { view: 'page' })
-  const source = await screen.findByText('different-world-source')
+  const source = await screen.findByText('acme-voxel-world-source')
   expect(within(source.closest('section')!).getByText('7.8.9')).toBeTruthy()
-  expect(fixture.ctx.remote.pluginManager.listBundles).toHaveBeenCalled()
 })
-it('keeps unassigned roles unknown even if a formerly hard-coded package is active', async () => {
+it('keeps roles unavailable even when a formerly hard-coded package is active', async () => {
   const fixture = shellFixture()
-  installDesktopBridgeFixture({ reads: async () => ({ kind: 'DEPLOYMENT_CONFIGURATION', packages: [{ name: 'different-world-source', version: '0.0.1', sourceRevision: 'FIXTURE', tarSha256: 'FIXTURE' }] }) })
+  installRoles(5)
   fixture.ctx.remote.pluginManager.listPlugins = vi.fn(async () => ({ ok: true as const, value: [
     { entryId: 'fixture:luanti' as never, moduleName: 'hanaworlds-adapter-luanti', enabled: true, fiberPhase: 'active' as const, readOnlyReason: 'management-required' as const },
   ] }))
   apply(fixture.ctx)
-  const seat = fixture.seats.find(row => row.options.id === 'hanaworlds-runtime')!
-  renderSeat(seat, { view: 'page' })
-  const role = await screen.findByText('world-source')
-  expect(within(role.closest('section')!).getAllByText(en.pluginsUnknown).length).toBeGreaterThan(0)
+  renderSeat(fixture.seats.find(row => row.options.id === 'hanaworlds-runtime')!, { view: 'page' })
+  await screen.findByText('UNAVAILABLE')
   expect(screen.queryByText('hanaworlds-adapter-luanti')).toBeNull()
+  expect(screen.queryByText(en.pluginsRunning)).toBeNull()
 })
 it('does not invent a version when bundle ownership is ambiguous or the upstream value is absent', async () => {
   const fixture = shellFixture()
   fixture.ctx.remote.pluginManager.listBundles = vi.fn(async () => ({ ok: true as const, value: [
     ...['owner-one', 'owner-two'].map(name => ({ name, version: '1.2.3', enabled: true, installed: true, optional: false, removable: true,
-      rows: [{ rowId: name, moduleName: 'ambiguous-provider' }], overrides: [] })),
-    { name: 'unversioned-provider', enabled: true, installed: true, optional: false, removable: true, rows: [], overrides: [] },
+      rows: [{ rowId: name, moduleName: 'hanaworlds-adapter-luanti' }], overrides: [] })),
+    { name: 'hanaworlds-skills', enabled: true, installed: true, optional: false, removable: true, rows: [], overrides: [] },
   ] }))
-  apply(fixture.ctx, { roleProviders: { 'world-source': ['ambiguous-provider'], skills: ['unversioned-provider'] } })
+  apply(fixture.ctx)
   const seat = fixture.seats.find(row => row.options.id === 'hanaworlds-runtime')!
   const result = await (seat.options.inject as () => PluginStatusFace)().read()
-  expect(result.plugins.find(row => row.name === 'ambiguous-provider')?.version).toBeNull()
-  expect(result.plugins.find(row => row.name === 'unversioned-provider')?.version).toBeNull()
+  expect(result.plugins.find(row => row.name === 'hanaworlds-adapter-luanti')?.version).toBeNull()
+  expect(result.plugins.find(row => row.name === 'hanaworlds-skills')?.version).toBeNull()
 })
-it('turns malformed role configuration into a named card without guessing providers or stopping apply', async () => {
+// The final published rejection binds a caller request ID. This GET route mints its ID at
+// Desktop; there is no client request to correlate, so the other eleven cases apply here.
+it.each(roleFixture.reject.slice(0, -1))('rejects published invalid roles: $title', async rejection => {
   const fixture = shellFixture()
-  expect(() => Reflect.apply(apply, undefined, [fixture.ctx, { roleProviders: { 'world-source': 'not-an-array' } }])).not.toThrow()
-  renderSeat(fixture.seats.find(row => row.options.id === 'hanaworlds-shell-faults')!, { view: 'page' })
+  installDesktopBridgeFixture({ reads: async () => rejection.response })
+  expect(() => apply(fixture.ctx)).not.toThrow()
+  renderSeat(fixture.seats.find(row => row.options.id === 'hanaworlds-runtime')!, { view: 'page' })
   const alert = await screen.findByRole('alert')
-  expect(alert.textContent).toContain('hanaworlds-shell-ui')
-  expect(alert.textContent).toContain('roleProviders.world-source')
+  expect(alert.textContent).toContain('desktop-bridge')
+  expect(alert.textContent).toContain(rejection.code)
+  expect(screen.queryByText('COMPLETE')).toBeNull()
+  expect(screen.queryByText(en.pluginsRunning)).toBeNull()
   expect(fixture.seats.filter(row => row.options.name === 'main')).toHaveLength(3)
+})
+it('rejects a route response without its bridge-owned request identity', async () => {
+  const fixture = shellFixture()
+  installDesktopBridgeFixture({ reads: async () => ({ ...roleFixture.exchanges[0]!.response, requestId: '' }) })
+  apply(fixture.ctx)
+  renderSeat(fixture.seats.find(row => row.options.id === 'hanaworlds-runtime')!, { view: 'page' })
+  expect((await screen.findByRole('alert')).textContent).toContain('SCHEMA_INVALID')
+})
+it('retains the published HTTP 409 contract error and its original route reason', async () => {
+  const fixture = shellFixture()
+  vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({
+    error: 'FIXTURE-skill-catalog-incomplete', contractError: roleFixture.exchanges[7]!.response.error,
+  }), { status: 409 })))
+  apply(fixture.ctx)
+  renderSeat(fixture.seats.find(row => row.options.id === 'hanaworlds-runtime')!, { view: 'page' })
+  const alert = await screen.findByRole('alert')
+  for (const reason of ['desktop-bridge', 'CAPABILITY_UNAVAILABLE', 'REQUIRED_FACT_UNKNOWN', 'FIXTURE-skill-catalog-incomplete']) expect(alert.textContent).toContain(reason)
+})
+it('clears known providers when a fresh route read returns the published refusal', async () => {
+  const fixture = shellFixture()
+  apply(fixture.ctx)
+  renderSeat(fixture.seats.find(row => row.options.id === 'hanaworlds-runtime')!, { view: 'page' })
+  await screen.findByText('COMPLETE')
+  installRoles(7)
+  fireEvent.click(screen.getByRole('button', { name: en.pluginsRead }))
+  await screen.findByRole('alert')
+  expect(screen.queryByText('COMPLETE')).toBeNull()
+  expect(screen.queryByText('hanaworlds-adapter-luanti')).toBeNull()
+})
+it('shows an HTTP role route failure by name and leaves Home usable', async () => {
+  const fixture = shellFixture()
+  installDesktopBridgeFixture({ reads: async () => { throw Error('FIXTURE-role-route-refused') } })
+  apply(fixture.ctx)
+  renderSeat(fixture.seats.find(row => row.options.id === 'hanaworlds-runtime')!, { view: 'page' })
+  const alert = await screen.findByRole('alert')
+  expect(alert.textContent).toContain('desktop-bridge')
+  expect(alert.textContent).toContain('FIXTURE-role-route-refused')
+  cleanup()
+  renderSeat(fixture.seats.find(row => row.options.key === 'hana-home')!)
+  fireEvent.click(screen.getByRole('button', { name: new RegExp(en.startWorkshop) }))
+  expect(fixture.ctx.layout.selectPanel).toHaveBeenCalledWith('hana-workshop')
 })
 
 it('executes the unchanged bd964cdf bad factory through the real DSH module system and Cordis Loader, keeping a healthy Shell panel usable', async () => {

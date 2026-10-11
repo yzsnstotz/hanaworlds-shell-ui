@@ -7,7 +7,7 @@ This card migrates the approved existing interface; it does not implement real w
 - Brand: `620e17a50fb1ea918c030ecb875ec88f1a3680a2`; palette: `6028b44d29730c332a71836ea3010a9d50998846`; Home: `b7d402824d672d50bb9b0eefe92fde3e344f6aa5`; BuildControls: `f590afaa3b6d2f3eb9cd9ea6b3ceb3d81df4b3de`.
 - Client bundle wrapper and CSS handling follow upstream DSH `packages/client/tsdown.client.ts` and `packages/client/web/src/platform.ts`, as carried in the source baseline (DSH dsh-v0.2.0-rc.2, MIT).
 - Adaptations: standalone npm build; public Loader/Remote/Store declarations; HTTP component-fixture transport; session/v5 public types; plugin roster name; HTTP-backed settings configuration; removal of unused placeholder copy. Branding, theme tokens and panel layout are retained.
-- Contract: exact Git tag `v2.0.0`, commit `3377ea81513d9a9446dccd4b626b4bfc183dc711`. No sibling module imports, workspace links or unpublished local types.
+- Contract: exact Git tag `v2.9.0`, commit `a892ceeb7047377d108f578161461aa06e0bfe5f`. No sibling module imports, workspace links or unpublished local types.
 
 ## Direct dependencies
 
@@ -35,7 +35,7 @@ Installed versions below are locked in package-lock.json. Dev dependencies suppl
 | @testing-library/dom | 10.4.2 | MIT | https://github.com/testing-library/dom-testing-library | build or component tests |
 | @testing-library/react | 16.3.3 | MIT | https://github.com/testing-library/react-testing-library | build or component tests |
 | @types/react | 18.3.31 | MIT | https://github.com/DefinitelyTyped/DefinitelyTyped.git | build or component tests |
-| hanaworlds-contracts | 2.0.0 | MIT |  | public session/v5 types and fixture schema validation |
+| hanaworlds-contracts | 2.9.0 | MIT | https://github.com/yzsnstotz/hanaworlds-contracts/tree/v2.9.0 | public session/v5 and ReadPluginRoles types; released fixtures, mock and test validation |
 | jsdom | 29.1.1 | MIT | git+https://github.com/jsdom/jsdom.git | build or component tests |
 | lightningcss | 1.33.0 | MPL-2.0 | https://github.com/parcel-bundler/lightningcss.git | build or component tests |
 | react | 18.3.1 | MIT | https://github.com/facebook/react.git | client panels; Host supplies React |
@@ -58,3 +58,18 @@ Installed versions below are locked in package-lock.json. Dev dependencies suppl
   fetch declarations required by @types/node; test/build dependency only, no shipped runtime.
 - Production continues to use the existing approved DSH/Cordis dependencies and
   shared Host React; no new production runtime dependency or sibling module import.
+
+## Q-21 published role source
+
+- `hanaworlds-contracts` · 2.9.0 · MIT ·
+  `git+https://github.com/yzsnstotz/hanaworlds-contracts.git#v2.9.0`, commit
+  `a892ceeb7047377d108f578161461aa06e0bfe5f` · public ReadPluginRoles types and
+  `hanaworlds-contracts/fixtures/plugin-roles` / `createPluginRolesMock` for tests.
+  Fixture and mock evidence is SOURCE/FIXTURE only. Runtime validation remains
+  test-only because the package runtime imports node:crypto; the browser checks
+  the released response shape and role binding invariants locally.
+- HTTP boundary: desktop-bridge-plugin-roles-01 delivery `412a9b10361236e83560c964d6b55b64916d412a`
+  publishes GET `/api-hanaworlds-plugin-roles`; no counterpart module is imported.
+- Candidate `ea8d0cbce7ff4208ec75c762cf28bad56c2b471b` apply protection, fault
+  components, upstream version reader and original plugin-isolation artifacts are
+  retained. Q-21 removes its Shell-owned provider configuration.

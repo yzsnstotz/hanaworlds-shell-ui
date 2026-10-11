@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import type { PluginRole, PluginRoles } from 'hanaworlds-contracts'
 import type { InjectFace, PropsLocale } from '@deepseek-ai/dsh-client-ui-slots'
 import styles from './ShellSettings.module.css'
 
@@ -11,7 +12,7 @@ export interface PluginPhase {
 /** Current Host/client activation and independently verified package identity. */
 export interface PluginObservation {
   name: string
-  role?: string
+  role?: PluginRole
   version?: string | null
   versionSource?: string | null
   hostRequired: boolean
@@ -23,7 +24,7 @@ export interface PluginObservation {
 /** Read-only current runtime and SDK observations supplied by the Shell entry. */
 export interface PluginStatusFace {
   view: 'summary' | 'page'
-  read(this: void): Promise<{ plugins: PluginObservation[]; sdk: PluginObservation['identity'] }>
+  read(this: void): Promise<{ plugins: PluginObservation[]; sdk: PluginObservation['identity']; roles?: PluginRoles | null; roleError?: string }>
 }
 
 /** Show live Loader states without treating package presence or protocol compatibility as activation. */
@@ -45,10 +46,15 @@ export function PluginStatus({ view, read, t }: InjectFace<PluginStatusFace> & P
     <button type="button" onClick={() => { setRevision(value => value + 1) }}>{t('pluginsRead')}</button>
     {error && <p role="alert">hanaworlds-shell-ui · {error}</p>}
     {!observed && !error && <p role="status">{t('pluginsReading')}</p>}
+    {observed?.roles && <p role={observed.roles.status === 'COMPLETE' ? 'status' : 'alert'}>
+      <span>{observed.roles.status}</span>{observed.roles.missingRoles.length > 0 && ` · ${t('pluginsMissing')}: ${observed.roles.missingRoles.join(', ')}`}
+    </p>}
+    {observed?.roleError && <p role="alert">desktop-bridge · {observed.roleError} · {t('pluginsRolesUnknown')}: {observed.plugins.filter(plugin => plugin.role).map(plugin => plugin.role).join(', ')}</p>}
     {observed?.plugins.map((plugin) => {
       const required = [plugin.hostRequired ? plugin.host : undefined, plugin.clientRequired ? plugin.client : undefined]
         .filter(value => value !== undefined)
-      const phase = required.some(value => value?.phase === 'failed') ? 'pluginsFailed'
+      const missing = plugin.role && observed.roles?.missingRoles.includes(plugin.role)
+      const phase = missing ? 'pluginsMissing' : required.some(value => value?.phase === 'failed') ? 'pluginsFailed'
         : required.some(value => value?.enabled === false) ? 'pluginsDisabled'
           : required.length > 0 && required.every(value => value?.enabled === true && value.phase === 'active') ? 'pluginsRunning'
             : required.some(value => value === null) ? 'pluginsUnknown' : 'pluginsWaiting'

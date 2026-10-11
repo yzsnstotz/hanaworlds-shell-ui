@@ -1,7 +1,7 @@
 /** Text keys for the HanaWorlds Shell management page. */
 export type Key =
   | 'pluginsTitle' | 'pluginsIntro' | 'pluginsRead' | 'pluginsReading' | 'pluginsRunning' | 'pluginsFailed'
-  | 'pluginsDisabled' | 'pluginsUnknown' | 'pluginsWaiting' | 'pluginsIdentity' | 'pluginsHost' | 'pluginsClient' | 'pluginsSdk' | 'toolsTitle' | 'toolsIntro' | 'toolsConditions' | 'toolsSnapshot' | 'toolsBindingUnknown' | 'toolsFixture' | 'toolsBound' | 'toolsUnbound' | 'toolsPrerequisites' | 'toolsSkills' | 'toolsList' | 'toolsUnknown' | 'toolsIncomplete' | 'toolsNoSkills' | 'toolsNoTools' | 'toolsOrigin' | 'toolsModel' | 'toolsUser' | 'toolsYes' | 'toolsNo' | 'toolsScale' | 'toolsWhen' | 'toolsNotFor' | 'toolsInput' | 'toolsSeamOnly' | 'toolsContext' | 'toolsImage' | 'toolsCell' | 'toolsRegion' | 'toolsMethodsUse' | 'toolsBuild' | 'toolsUnknownScale'
+  | 'pluginsMissing' | 'pluginsRolesUnknown' | 'pluginsDisabled' | 'pluginsUnknown' | 'pluginsWaiting' | 'pluginsIdentity' | 'pluginsHost' | 'pluginsClient' | 'pluginsSdk' | 'toolsTitle' | 'toolsIntro' | 'toolsConditions' | 'toolsSnapshot' | 'toolsBindingUnknown' | 'toolsFixture' | 'toolsBound' | 'toolsUnbound' | 'toolsPrerequisites' | 'toolsSkills' | 'toolsList' | 'toolsUnknown' | 'toolsIncomplete' | 'toolsNoSkills' | 'toolsNoTools' | 'toolsOrigin' | 'toolsModel' | 'toolsUser' | 'toolsYes' | 'toolsNo' | 'toolsScale' | 'toolsWhen' | 'toolsNotFor' | 'toolsInput' | 'toolsSeamOnly' | 'toolsContext' | 'toolsImage' | 'toolsCell' | 'toolsRegion' | 'toolsMethodsUse' | 'toolsBuild' | 'toolsUnknownScale'
   | 'geometryPolicy' | 'geometrySource' | 'geometryEnvelope' | 'geometryBody' | 'geometryEntrance' | 'geometryLiquid' | 'geometryDamage' | 'geometryTopology' | 'geometryInvariant' | 'k3Title' | 'k3Intro' | 'k3Methods' | 'k3Seams' | 'k3Invariants' | 'k3Content' | 'k3Compatible' | 'k3Unavailable' | 'buildActions' | 'buildCurrent' | 'undoCurrent' | 'buildRefresh' | 'buildVerified' | 'undoVerified' | 'buildPending' | 'buildUnavailable' | 'pairTitle' | 'pairIntro' | 'pairAddRoot' | 'pairCreateFlat' | 'pairChoose' | 'pairGame' | 'pairIdentity' | 'pairNotInstalled' | 'pairCredentials' | 'pairAdmin' | 'pairPassword' | 'pairConnect' | 'pairPaired' | 'pairJoin' | 'pairGrantHelp' | 'pairRefresh' | 'pairNoPlayers' | 'pairBind' | 'pairWorking' | 'pairWorlds' | 'pairEmpty' | 'pairFlat' | 'pairExisting' | 'pairGameUnavailable' | 'pairPlay' | 'pairSessionMissing' | 'pairContentMissing' | 'pairAdapterMissing' | 'pairEngineFailed' | 'pairFailed' | 'pairSwitch' | 'pairDetails' | 'pairAdvanced' | 'pairFlatWorld' | 'pairIncarnation' | 'pairRevision' | 'viewDetails' | 'pairDelete' | 'pairDeleteTitle' | 'pairDeleteLoss' | 'pairDeleteFiles' | 'pairDeleteBytes' | 'pairDeleteCancel' | 'pairDeleteConfirm' | 'pairDeleteBound' | 'pairDeleteOwnership' | 'pairDeleteUnknown' | 'pairDeleteChanged' | 'pairDeleteUnavailable' | 'pairDeleteFailed'
   | 'nav' | 'title' | 'source' | 'version' | 'project' | 'registry' | 'fallbacks' | 'telemetry' | 'updates' | 'loading' | 'error' | 'none' | 'offNoTarget' | 'profileUnavailable' | 'versionUnavailable' | 'openPlugins'
   | 'homeNav' | 'workshopNav' | 'worldNav' | 'objectsNav' | 'homeEyebrow' | 'homeHeadline' | 'homeIntro'
@@ -18,8 +18,10 @@ export type Key =
 
 /** English UI text. */
 export const en: Record<Key, string> = {
+  pluginsMissing: 'Required role missing',
+  pluginsRolesUnknown: 'Role discovery unavailable; unverified roles',
   pluginsTitle: 'HanaWorlds plugins',
-  pluginsIntro: 'Required plugin roles and their configured providers. States and versions are read from the current plugin manager; missing facts remain UNKNOWN.',
+  pluginsIntro: 'Required roles and their providers are read from Desktop. Activation and versions are read from the current plugin manager; missing roles are named and unreadable facts remain UNKNOWN.',
   pluginsRead: 'Read current states',
   pluginsReading: 'Reading current states…',
   pluginsRunning: 'Enabled and running',
@@ -161,8 +163,10 @@ export const en: Record<Key, string> = {
 
 /** Simplified Chinese UI text. */
 export const zh: Record<Key, string> = {
+  pluginsMissing: '缺少必需角色',
+  pluginsRolesUnknown: '角色读取不可用；未核实的角色',
   pluginsTitle: 'HanaWorlds 插件',
-  pluginsIntro: '必需插件按角色及其配置的提供者列出。状态与版本读取当前插件管理器；缺少事实时显示 UNKNOWN。',
+  pluginsIntro: '必需角色及其提供者读取 Desktop。运行状态与版本读取当前插件管理器；缺失角色逐项点名，读取不到的事实显示 UNKNOWN。',
   pluginsRead: '读取当前状态',
   pluginsReading: '正在读取当前状态…',
   pluginsRunning: '已启用并运行',

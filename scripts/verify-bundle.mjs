@@ -7,7 +7,7 @@ import vm from 'node:vm'
 const root = new URL('../', import.meta.url)
 const manifest = JSON.parse(readFileSync(new URL('package.json', root)))
 assert.deepEqual(Object.keys(manifest.dsh), ['client'])
-assert.equal(manifest.dependencies['hanaworlds-contracts'], 'git+https://github.com/yzsnstotz/hanaworlds-contracts.git#v2.0.0')
+assert.equal(manifest.dependencies['hanaworlds-contracts'], 'git+https://github.com/yzsnstotz/hanaworlds-contracts.git#v2.9.0')
 assert.deepEqual(readdirSync(new URL('lib/', root)).sort(), ['client.js', 'client.js.map', 'index.js'])
 const source = readFileSync(new URL('lib/client.js', root), 'utf8')
 assert.doesNotMatch(source, /hanaworldsDesktopView|hanaworldsDesktopWorlds|hanaworldsWorkshopTransport|hanaworldsDesktopConfig|hanaworlds_request|session\/v3|尚未接入/)

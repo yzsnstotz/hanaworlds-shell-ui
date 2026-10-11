@@ -38,7 +38,7 @@ mock fetch/EventSource in tests only. No fixture is enabled by the production pl
 
 BuildControls submits UI operations and expected revisions only. The fixture bridge
 assembles sessionRef/worldRef/localContext/requestId and validates full requests
-and responses with the **published `hanaworlds-contracts#v2.0.0` session/v5 schema**.
+and responses with the **published `hanaworlds-contracts#v2.9.0` session/v5 schema**.
 The browser uses its public response types and rejects unsupported wire envelopes;
 full schema validation and current-context authority belong to the bridge.
 No renderer path is translated into worldId or templateId.
@@ -56,21 +56,36 @@ readback, Undo, DSH installation or integrated UI acceptance.
 This card preserves the old controls and interactions against explicit fixtures.
 No Electron/native bridge implementation is included.
 
-## shell-ui-02 candidate: roles and fault containment
+## shell-ui-02: roles and fault containment
 
 Required roles are `shell-ui`, `world-source`, `canvas`, `brush`, `painter`,
 `workshop`, `skills`, `desktop-bridge`, and `local-runtime`. Role requirements
 own Host/client activation checks; provider names only identify observations.
-An unassigned role remains UNKNOWN, even if a former hard-coded package is active.
-The candidate accepts `apply(ctx, {roleProviders: {"world-source": ["provider-name"]}})`;
-several providers can be assigned to `skills` or any other role.
+Roles and providers come exclusively from desktop-bridge's read-only
+`GET /api-hanaworlds-plugin-roles` (`world-inspection/v1 ReadPluginRoles`,
+published `hanaworlds-contracts` tag `v2.9.0`). There is no Shell-owned provider
+configuration. Renamed providers, several providers for one role, and a provider
+covering several roles follow the response without package-name inference.
 
-**Integration blocker:** DSH rc.2's ordinary client boot graph carries no plugin
-configuration, and ClientEntries creates rows using `{name}` only. Its public
-pluginManager inventory carries no HanaWorlds role metadata. The above module-local
-configuration seam is component-tested, but cannot be supplied automatically by the
-ordinary Host graph. It requires an agreed role-provider source before this card
-can be completed. No new HTTP contract or name-based role inference is introduced.
+`PARTIAL` and `UNAVAILABLE` display the exact missing roles as an alert and mark
+each missing role's row. A failed or invalid read names desktop-bridge and its
+original HTTP/contract reason, lists unverified roles, and discards previous
+providers. It does not certify those roles missing or running. Each refresh reads
+the current route and plugin manager again.
+
+The browser uses the published response types and checks the closed envelope,
+provider keys, Unicode references, sorted unique providers, and the binding of
+status/missingRoles to the provider map. The full contract runtime uses
+`node:crypto` and is confined to tests. The HTTP GET route creates its own request
+ID at Desktop; the browser checks its presence and shape, with no caller request
+ID to correlate. Tests consume the released fixture and mock through the
+public package exports (all eight exchanges and eleven applicable rejection
+cases; the request-ID correlation rejection belongs to an RPC caller).
+
+This remains a client-only plugin. It does not register the Host service
+`hanaworldsShellUi`; if the real host cannot evidence that role, the route's
+PARTIAL/missing `shell-ui` remains visible. Live Host assembly and owner
+acceptance are separate from these component checks.
 
 Versions come exclusively from `remote.pluginManager.listBundles()`; row module
 names join providers to their owning bundle. If the bundle differs from the provider,

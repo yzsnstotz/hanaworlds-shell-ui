@@ -86,6 +86,6 @@
     "vitest": "^4.1.8"
   },
   "dependencies": {
-    "hanaworlds-contracts": "git+https://github.com/yzsnstotz/hanaworlds-contracts.git#v2.0.0"
+    "hanaworlds-contracts": "git+https://github.com/yzsnstotz/hanaworlds-contracts.git#v2.9.0"
   }
 }

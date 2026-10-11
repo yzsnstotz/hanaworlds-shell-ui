@@ -11,6 +11,6 @@ dsh-v0.2.0-rc.2 (MIT). Cordis 4.0.4 and its public services are Host-provided.
 React 18 panels use the Host React module table; React is not duplicated in this bundle.
 The blossom image is retained verbatim from the specified HanaWorlds baseline.
 
-Published hanaworlds-contracts v2.0.0 (MIT) is used for public types and
+Published hanaworlds-contracts v2.9.0 (MIT) is used for public types and
 component-fixture schema checks. No contracts runtime is shipped in lib/client.js.
 Full per-dependency provenance and license identifiers: PROVENANCE.md.
