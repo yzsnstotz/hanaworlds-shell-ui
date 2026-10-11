@@ -1,0 +1,299 @@
+{
+  "repository": "https://github.com/yzsnstotz/hanaworlds-desktop",
+  "baseline": "bd964cdf19785b14aa1e2f6d2a2ee350190a038f",
+  "files": [
+    {
+      "path": "src/client/Brand.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/Brand.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "620e17a50fb1ea918c030ecb875ec88f1a3680a2 2026-10-05 Brand desktop main window and conversation hero as HanaWorlds",
+        "83838125976820fee942987d0c42ff332dc0aa26 2026-10-05 Add isolated HanaWorlds Electron research desktop and Shell management"
+      ]
+    },
+    {
+      "path": "src/client/BuildControls.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/BuildControls.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "f590afaa3b6d2f3eb9cd9ea6b3ceb3d81df4b3de 2026-10-07 fix(desktop): route native Prepare and Confirm through building skill",
+        "66953b6c82593c60a0c7de865342b0637b362162 2026-10-06 Connect Desktop Host to current local-world contracts and Undo"
+      ]
+    },
+    {
+      "path": "src/client/HanaShellPage.module.css",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/HanaShellPage.module.css",
+      "matchesBaseline": true,
+      "followHistory": [
+        "b7d402824d672d50bb9b0eefe92fde3e344f6aa5 2026-10-08 Make existing worlds readable and switchable in the current conversation",
+        "5d05182c5099cde7f0911840c3c133bda4a16f7a 2026-10-06 feat(desktop): pair local worlds through current native authority",
+        "05aecf86e9e7e14054f09ac7e0ff7bb15803f1e7 2026-10-05 feat(desktop): add HanaWorlds first-level Shell pages"
+      ]
+    },
+    {
+      "path": "src/client/HanaShellPage.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/HanaShellPage.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "b7d402824d672d50bb9b0eefe92fde3e344f6aa5 2026-10-08 Make existing worlds readable and switchable in the current conversation",
+        "ac6ebfc6f392942fea597b04a097da9135fcd965 2026-10-08 fix(desktop): seed Canvas 0.6.1 and open its public objects panel",
+        "0ace297ca6a7517447051677e850b59949eb70fe 2026-10-07 feat(desktop): create and view flat worlds in the current conversation",
+        "f590afaa3b6d2f3eb9cd9ea6b3ceb3d81df4b3de 2026-10-07 fix(desktop): route native Prepare and Confirm through building skill",
+        "66953b6c82593c60a0c7de865342b0637b362162 2026-10-06 Connect Desktop Host to current local-world contracts and Undo",
+        "5d05182c5099cde7f0911840c3c133bda4a16f7a 2026-10-06 feat(desktop): pair local worlds through current native authority",
+        "6028b44d29730c332a71836ea3010a9d50998846 2026-10-05 Fix stale Shell views and align native management palette",
+        "85196041e99ea38d817cbe2adfb32ed2f64281d3 2026-10-05 feat(desktop): brand native welcome and macOS app details",
+        "09393a0531451d30436e23bf471d4b8ba921a3a2 2026-10-05 fix(desktop): preserve isolated launch and Session draft state",
+        "05aecf86e9e7e14054f09ac7e0ff7bb15803f1e7 2026-10-05 feat(desktop): add HanaWorlds first-level Shell pages"
+      ]
+    },
+    {
+      "path": "src/client/PluginStatus.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/PluginStatus.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "37dafdee88d93de455a78b77c2f2c70911594967 2026-10-08 feat(desktop): show observed HanaWorlds activation and installed SDK in Plugins"
+      ]
+    },
+    {
+      "path": "src/client/ShellSettings.module.css",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/ShellSettings.module.css",
+      "matchesBaseline": true,
+      "followHistory": [
+        "6028b44d29730c332a71836ea3010a9d50998846 2026-10-05 Fix stale Shell views and align native management palette"
+      ]
+    },
+    {
+      "path": "src/client/ShellSettings.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/ShellSettings.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "2919b536495842bc57e93039e2d4e412a730bf5f 2026-10-07 feat(desktop): compose K3 region write path, flat world and product game supply",
+        "07409b25ca30d2615ca31c635dfa06f75f0328f5 2026-10-06 fix(shell): type deployment view tests against consumed props",
+        "43ed42b5a636ab157f62da90ea7334a50a7e10b5 2026-10-06 feat(desktop): supply production geometry and assemble current public components",
+        "66953b6c82593c60a0c7de865342b0637b362162 2026-10-06 Connect Desktop Host to current local-world contracts and Undo",
+        "6028b44d29730c332a71836ea3010a9d50998846 2026-10-05 Fix stale Shell views and align native management palette",
+        "d1b8d7a7058260b144a3821f172a28b6b9b42837 2026-10-05 feat(hanaworlds): confirm Workshop rounds in trusted Core Session",
+        "ac884bdbe8158f9fe4c1872726f31e4b26521b05 2026-10-05 Bind HanaWorlds Desktop views to trusted Core Sessions",
+        "83838125976820fee942987d0c42ff332dc0aa26 2026-10-05 Add isolated HanaWorlds Electron research desktop and Shell management"
+      ]
+    },
+    {
+      "path": "src/client/SkillToolsSettings.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/SkillToolsSettings.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "fd7836b1f4105d8d3e82e49fd97280c6d8537f34 2026-10-08 feat(desktop): describe HanaWorlds skill tools in Settings"
+      ]
+    },
+    {
+      "path": "src/client/WorldPairing.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/WorldPairing.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "bd964cdf19785b14aa1e2f6d2a2ee350190a038f 2026-10-08 fix(world): retain stopped control and confirm safe deletion",
+        "b7d402824d672d50bb9b0eefe92fde3e344f6aa5 2026-10-08 Make existing worlds readable and switchable in the current conversation",
+        "0ace297ca6a7517447051677e850b59949eb70fe 2026-10-07 feat(desktop): create and view flat worlds in the current conversation",
+        "2919b536495842bc57e93039e2d4e412a730bf5f 2026-10-07 feat(desktop): compose K3 region write path, flat world and product game supply",
+        "66953b6c82593c60a0c7de865342b0637b362162 2026-10-06 Connect Desktop Host to current local-world contracts and Undo",
+        "6fc3e726219134fff6b59595ecd7ff70abbc27a4 2026-10-06 fix(desktop): receive native world traffic while management is idle",
+        "5d05182c5099cde7f0911840c3c133bda4a16f7a 2026-10-06 feat(desktop): pair local worlds through current native authority"
+      ]
+    },
+    {
+      "path": "src/client/blossom-data.ts",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/blossom-data.ts",
+      "matchesBaseline": true,
+      "followHistory": [
+        "83838125976820fee942987d0c42ff332dc0aa26 2026-10-05 Add isolated HanaWorlds Electron research desktop and Shell management"
+      ]
+    },
+    {
+      "path": "src/client/index.ts",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/index.ts",
+      "matchesBaseline": true,
+      "followHistory": [
+        "37dafdee88d93de455a78b77c2f2c70911594967 2026-10-08 feat(desktop): show observed HanaWorlds activation and installed SDK in Plugins",
+        "ac6ebfc6f392942fea597b04a097da9135fcd965 2026-10-08 fix(desktop): seed Canvas 0.6.1 and open its public objects panel",
+        "fd7836b1f4105d8d3e82e49fd97280c6d8537f34 2026-10-08 feat(desktop): describe HanaWorlds skill tools in Settings",
+        "6028b44d29730c332a71836ea3010a9d50998846 2026-10-05 Fix stale Shell views and align native management palette",
+        "05aecf86e9e7e14054f09ac7e0ff7bb15803f1e7 2026-10-05 feat(desktop): add HanaWorlds first-level Shell pages",
+        "620e17a50fb1ea918c030ecb875ec88f1a3680a2 2026-10-05 Brand desktop main window and conversation hero as HanaWorlds",
+        "83838125976820fee942987d0c42ff332dc0aa26 2026-10-05 Add isolated HanaWorlds Electron research desktop and Shell management"
+      ]
+    },
+    {
+      "path": "src/client/locales.ts",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/locales.ts",
+      "matchesBaseline": true,
+      "followHistory": [
+        "bd964cdf19785b14aa1e2f6d2a2ee350190a038f 2026-10-08 fix(world): retain stopped control and confirm safe deletion",
+        "b7d402824d672d50bb9b0eefe92fde3e344f6aa5 2026-10-08 Make existing worlds readable and switchable in the current conversation",
+        "37dafdee88d93de455a78b77c2f2c70911594967 2026-10-08 feat(desktop): show observed HanaWorlds activation and installed SDK in Plugins",
+        "fd7836b1f4105d8d3e82e49fd97280c6d8537f34 2026-10-08 feat(desktop): describe HanaWorlds skill tools in Settings",
+        "0ace297ca6a7517447051677e850b59949eb70fe 2026-10-07 feat(desktop): create and view flat worlds in the current conversation",
+        "2919b536495842bc57e93039e2d4e412a730bf5f 2026-10-07 feat(desktop): compose K3 region write path, flat world and product game supply",
+        "43ed42b5a636ab157f62da90ea7334a50a7e10b5 2026-10-06 feat(desktop): supply production geometry and assemble current public components",
+        "66953b6c82593c60a0c7de865342b0637b362162 2026-10-06 Connect Desktop Host to current local-world contracts and Undo",
+        "5d05182c5099cde7f0911840c3c133bda4a16f7a 2026-10-06 feat(desktop): pair local worlds through current native authority",
+        "05aecf86e9e7e14054f09ac7e0ff7bb15803f1e7 2026-10-05 feat(desktop): add HanaWorlds first-level Shell pages",
+        "d1b8d7a7058260b144a3821f172a28b6b9b42837 2026-10-05 feat(hanaworlds): confirm Workshop rounds in trusted Core Session",
+        "ac884bdbe8158f9fe4c1872726f31e4b26521b05 2026-10-05 Bind HanaWorlds Desktop views to trusted Core Sessions",
+        "83838125976820fee942987d0c42ff332dc0aa26 2026-10-05 Add isolated HanaWorlds Electron research desktop and Shell management"
+      ]
+    },
+    {
+      "path": "src/client/theme.ts",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/client/theme.ts",
+      "matchesBaseline": true,
+      "followHistory": [
+        "6028b44d29730c332a71836ea3010a9d50998846 2026-10-05 Fix stale Shell views and align native management palette"
+      ]
+    },
+    {
+      "path": "src/css-modules.d.ts",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/css-modules.d.ts",
+      "matchesBaseline": true,
+      "followHistory": [
+        "05aecf86e9e7e14054f09ac7e0ff7bb15803f1e7 2026-10-05 feat(desktop): add HanaWorlds first-level Shell pages",
+        "4932a4da4e9545ae357294ec56e588b8c9338cd2 2026-10-05 Import DeepSeek Harness dsh-v0.2.0-rc.2 source snapshot"
+      ]
+    },
+    {
+      "path": "src/index.ts",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/src/index.ts",
+      "matchesBaseline": true,
+      "followHistory": [
+        "83838125976820fee942987d0c42ff332dc0aa26 2026-10-05 Add isolated HanaWorlds Electron research desktop and Shell management"
+      ]
+    },
+    {
+      "path": "test/build-undo.client.spec.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/build-undo.client.spec.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "f590afaa3b6d2f3eb9cd9ea6b3ceb3d81df4b3de 2026-10-07 fix(desktop): route native Prepare and Confirm through building skill",
+        "66953b6c82593c60a0c7de865342b0637b362162 2026-10-06 Connect Desktop Host to current local-world contracts and Undo"
+      ]
+    },
+    {
+      "path": "test/deployment.client.spec.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/deployment.client.spec.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "07409b25ca30d2615ca31c635dfa06f75f0328f5 2026-10-06 fix(shell): type deployment view tests against consumed props",
+        "43ed42b5a636ab157f62da90ea7334a50a7e10b5 2026-10-06 feat(desktop): supply production geometry and assemble current public components"
+      ]
+    },
+    {
+      "path": "test/expected/delete-world.txt",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/expected/delete-world.txt",
+      "matchesBaseline": true,
+      "followHistory": [
+        "bd964cdf19785b14aa1e2f6d2a2ee350190a038f 2026-10-08 fix(world): retain stopped control and confirm safe deletion"
+      ]
+    },
+    {
+      "path": "test/expected/flat-world.txt",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/expected/flat-world.txt",
+      "matchesBaseline": true,
+      "followHistory": [
+        "bd964cdf19785b14aa1e2f6d2a2ee350190a038f 2026-10-08 fix(world): retain stopped control and confirm safe deletion",
+        "b7d402824d672d50bb9b0eefe92fde3e344f6aa5 2026-10-08 Make existing worlds readable and switchable in the current conversation",
+        "0ace297ca6a7517447051677e850b59949eb70fe 2026-10-07 feat(desktop): create and view flat worlds in the current conversation"
+      ]
+    },
+    {
+      "path": "test/expected/home.txt",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/expected/home.txt",
+      "matchesBaseline": true,
+      "followHistory": [
+        "ac6ebfc6f392942fea597b04a097da9135fcd965 2026-10-08 fix(desktop): seed Canvas 0.6.1 and open its public objects panel"
+      ]
+    },
+    {
+      "path": "test/expected/plugin-status.txt",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/expected/plugin-status.txt",
+      "matchesBaseline": true,
+      "followHistory": [
+        "e2d85c6d0d8361d20d5bc4a2c4c53ad9456d8746 2026-10-08 test(desktop): align plugin snapshot with startup identity wording",
+        "37dafdee88d93de455a78b77c2f2c70911594967 2026-10-08 feat(desktop): show observed HanaWorlds activation and installed SDK in Plugins"
+      ]
+    },
+    {
+      "path": "test/expected/skill-tools.txt",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/expected/skill-tools.txt",
+      "matchesBaseline": true,
+      "followHistory": [
+        "fd7836b1f4105d8d3e82e49fd97280c6d8537f34 2026-10-08 feat(desktop): describe HanaWorlds skill tools in Settings"
+      ]
+    },
+    {
+      "path": "test/objects-navigation.client.spec.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/objects-navigation.client.spec.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "ac6ebfc6f392942fea597b04a097da9135fcd965 2026-10-08 fix(desktop): seed Canvas 0.6.1 and open its public objects panel"
+      ]
+    },
+    {
+      "path": "test/plugin-status.client.spec.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/plugin-status.client.spec.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "37dafdee88d93de455a78b77c2f2c70911594967 2026-10-08 feat(desktop): show observed HanaWorlds activation and installed SDK in Plugins"
+      ]
+    },
+    {
+      "path": "test/session-draft.client.spec.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/session-draft.client.spec.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "f590afaa3b6d2f3eb9cd9ea6b3ceb3d81df4b3de 2026-10-07 fix(desktop): route native Prepare and Confirm through building skill",
+        "66953b6c82593c60a0c7de865342b0637b362162 2026-10-06 Connect Desktop Host to current local-world contracts and Undo",
+        "85196041e99ea38d817cbe2adfb32ed2f64281d3 2026-10-05 feat(desktop): brand native welcome and macOS app details",
+        "9b3e2a6d227a50f36e15a3a41d4f42b1ead42fa6 2026-10-05 test(desktop): type-check Session draft regression",
+        "09393a0531451d30436e23bf471d4b8ba921a3a2 2026-10-05 fix(desktop): preserve isolated launch and Session draft state"
+      ]
+    },
+    {
+      "path": "test/settings-stale-view.client.spec.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/settings-stale-view.client.spec.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "66953b6c82593c60a0c7de865342b0637b362162 2026-10-06 Connect Desktop Host to current local-world contracts and Undo",
+        "6028b44d29730c332a71836ea3010a9d50998846 2026-10-05 Fix stale Shell views and align native management palette"
+      ]
+    },
+    {
+      "path": "test/skill-tools.client.spec.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/skill-tools.client.spec.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "fd7836b1f4105d8d3e82e49fd97280c6d8537f34 2026-10-08 feat(desktop): describe HanaWorlds skill tools in Settings"
+      ]
+    },
+    {
+      "path": "test/stale-view.client.spec.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/stale-view.client.spec.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "66953b6c82593c60a0c7de865342b0637b362162 2026-10-06 Connect Desktop Host to current local-world contracts and Undo",
+        "6028b44d29730c332a71836ea3010a9d50998846 2026-10-05 Fix stale Shell views and align native management palette"
+      ]
+    },
+    {
+      "path": "test/world-pairing.client.spec.tsx",
+      "sourcePath": "packages/client/ui-hanaworlds-shell/tests/world-pairing.client.spec.tsx",
+      "matchesBaseline": true,
+      "followHistory": [
+        "bd964cdf19785b14aa1e2f6d2a2ee350190a038f 2026-10-08 fix(world): retain stopped control and confirm safe deletion",
+        "b7d402824d672d50bb9b0eefe92fde3e344f6aa5 2026-10-08 Make existing worlds readable and switchable in the current conversation",
+        "0ace297ca6a7517447051677e850b59949eb70fe 2026-10-07 feat(desktop): create and view flat worlds in the current conversation",
+        "66953b6c82593c60a0c7de865342b0637b362162 2026-10-06 Connect Desktop Host to current local-world contracts and Undo",
+        "6fc3e726219134fff6b59595ecd7ff70abbc27a4 2026-10-06 fix(desktop): receive native world traffic while management is idle",
+        "5d05182c5099cde7f0911840c3c133bda4a16f7a 2026-10-06 feat(desktop): pair local worlds through current native authority"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+.page { --ink: #ecf3e8; --muted: #afc1b1; --line: rgba(214,236,204,.17); --accent: #dfb989; flex: 1; min-width: 0; height: 100%; overflow: auto; color: var(--ink); background: radial-gradient(circle at 83% 0%, #33564c 0, transparent 33%), linear-gradient(150deg, #132b29 0%, #142722 54%, #172920 100%); }
+.inner { box-sizing: border-box; max-width: 1220px; min-height: 100%; margin: auto; padding: max(var(--dsh-frame-top-clearance, 48px), 48px) clamp(24px, 5vw, 76px) 52px; }
+.header { max-width: 760px; margin-bottom: 35px; }
+.eyebrow { display: flex; align-items: center; gap: 13px; color: #e8cfa8; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.eyebrow img { border-radius: 50%; background: #e9f0e4; padding: 4px; }
+.rule { height: 1px; width: 50px; background: var(--accent); }
+.header h1 { margin: 24px 0 15px; font-family: 'Iowan Old Style', 'Songti SC', Georgia, serif; font-weight: 400; font-size: clamp(40px, 5.1vw, 76px); line-height: 1.07; letter-spacing: -.045em; text-wrap: balance; }
+.lede { max-width: 650px; color: var(--muted); font-size: clamp(15px, 1.5vw, 18px); line-height: 1.7; }
+.heroGrid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(190px, 1fr); gap: 14px; margin-bottom: 18px; }
+.featureCard, .linkCard, .statusCard, .detailCard { border: 1px solid var(--line); border-radius: 4px; }
+.featureCard { position: relative; min-height: 250px; box-sizing: border-box; padding: 28px; background: linear-gradient(137deg, rgba(199,219,176,.18), rgba(15,43,37,.74)); display: flex; flex-direction: column; align-items: flex-start; }
+.cardIndex { color: #d8b889; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.featureCard h2 { margin: 35px 0 8px; font-family: 'Iowan Old Style', 'Songti SC', Georgia, serif; font-size: 34px; font-weight: 400; }
+.featureCard p { max-width: 480px; margin: 0 0 20px; color: var(--muted); line-height: 1.6; }
+.sideCards { display: grid; grid-template-rows: 1fr 1fr; gap: 14px; }
+.linkCard { padding: 22px; background: rgba(221,235,211,.055); color: var(--ink); text-align: left; display: grid; grid-template-columns: 1fr auto; align-content: space-between; cursor: pointer; }
+.linkCard > span:first-child { grid-column: 1 / -1; color: var(--accent); font-size: 11px; letter-spacing: .1em; }
+.linkCard strong { font-family: 'Iowan Old Style', 'Songti SC', Georgia, serif; font-weight: 400; font-size: 22px; }
+.statusCard, .detailCard { background: rgba(7,26,24,.46); padding: 24px 28px; margin-bottom: 18px; }
+.statusHeading { display: flex; justify-content: space-between; align-items: center; }
+.statusCard strong { display: block; margin: 16px 0; font-size: 19px; font-weight: 500; }
+.statusCard p, .detailCard p { color: var(--muted); line-height: 1.6; }
+.pulse { width: 8px; height: 8px; border-radius: 50%; background: #b5cc9a; box-shadow: 0 0 0 5px rgba(181,204,154,.13); }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin: 15px 0; }
+.facts span { min-width: 0; color: var(--muted); font-size: 12px; }
+.facts b { display: block; color: var(--ink); font-size: 14px; font-weight: 500; overflow-wrap: anywhere; margin-top: 6px; }
+.source, .fixtureNote { font-size: 12px; }
+.fixtureNote { border-left: 2px solid var(--accent); padding-left: 10px; }
+.actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+.actions button, .primary, .footerAction button, .back { border: 1px solid rgba(221,235,211,.36); border-radius: 3px; background: transparent; color: var(--ink); padding: 10px 14px; font: inherit; font-size: 13px; cursor: pointer; }
+.actions button:hover, .footerAction button:hover, .back:hover, .linkCard:hover { border-color: var(--accent); background-color: rgba(220,190,142,.1); }
+.actions button:disabled, .primary:disabled { opacity: .45; cursor: default; }
+.primary, .actions .primary { background: #d9ba8b; color: #1c302a; border-color: #d9ba8b; font-weight: 700; }
+.primary:hover, .actions .primary:hover { background: #efcfa0; }
+.primary span { margin-left: 18px; }
+.back { margin: -13px 0 28px; border: 0; padding-left: 0; color: var(--accent); }
+.detailCard { max-width: 890px; }
+.detailCard h2 { font-family: 'Iowan Old Style', 'Songti SC', Georgia, serif; font-weight: 400; font-size: 28px; }
+.details { display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 12px; margin: 24px 0 0; font-size: 13px; }
+.details dt { color: var(--muted); }.details dd { margin: 0; overflow-wrap: anywhere; }
+.inputLabel { display: block; margin: 24px 0 9px; font-size: 13px; color: var(--accent); }
+.detailCard input { box-sizing: border-box; width: 100%; border: 1px solid var(--line); border-radius: 3px; background: #10231f; color: var(--ink); padding: 12px; font: inherit; }
+.detailCard textarea { box-sizing: border-box; width: 100%; border: 1px solid var(--line); border-radius: 3px; background: #10231f; color: var(--ink); padding: 14px; font: inherit; resize: vertical; }
+.rounds { border-top: 1px solid var(--line); margin-top: 25px; padding-top: 20px; }.rounds ol { padding-left: 24px; }.rounds li { border-bottom: 1px solid var(--line); padding: 10px 0; }.rounds li span { color: var(--accent); font-size: 12px; }
+.emptyGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }.emptyGrid .detailCard { min-height: 180px; }
+.footerAction { display: flex; justify-content: space-between; align-items: center; gap: 20px; color: var(--muted); font-size: 11px; }.footerAction button { border: 0; padding-left: 0; color: var(--accent); }
+@media (max-width: 800px) { .heroGrid, .emptyGrid { grid-template-columns: 1fr; }.sideCards { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }.featureCard { min-height: 230px; }.facts { grid-template-columns: 1fr; }.footerAction { display: block; } }
+@media (max-width: 560px) { .inner { padding-left: 20px; padding-right: 20px; }.sideCards { grid-template-columns: 1fr; }.linkCard { min-height: 110px; }.header h1 { font-size: 40px; } }
+@media (prefers-reduced-motion: no-preference) { .linkCard, .actions button, .primary { transition: background-color .18s ease, border-color .18s ease; } }
+
+.worldList { list-style: none; padding: 0; display: grid; gap: 12px; }
+.worldList li { padding: 16px; border: 0.5px solid var(--line); border-radius: 4px; }
+.worldList li p { margin: 8px 0 0; font-weight: 500; }
+.detailCard details, .statusCard details { margin-top: 16px; }
+.detailCard summary, .statusCard summary { cursor: pointer; color: inherit; }

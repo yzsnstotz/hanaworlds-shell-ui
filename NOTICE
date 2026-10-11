@@ -1,0 +1,16 @@
+hanaworlds-shell-ui 0.1.0
+
+HanaWorlds Shell UI was extracted from
+https://github.com/yzsnstotz/hanaworlds-desktop
+commit bd964cdf19785b14aa1e2f6d2a2ee350190a038f,
+packages/client/ui-hanaworlds-shell. The original MIT license is included in LICENSE.
+Copyright (c) 2026 DeepSeek. HanaWorlds adaptations: HanaWorlds contributors.
+
+DSH client registration and build format derive from deepseek-ai/deepseek-harness,
+dsh-v0.2.0-rc.2 (MIT). Cordis 4.0.4 and its public services are Host-provided.
+React 18 panels use the Host React module table; React is not duplicated in this bundle.
+The blossom image is retained verbatim from the specified HanaWorlds baseline.
+
+Published hanaworlds-contracts v2.0.0 (MIT) is used for public types and
+component-fixture schema checks. No contracts runtime is shipped in lib/client.js.
+Full per-dependency provenance and license identifiers: PROVENANCE.md.

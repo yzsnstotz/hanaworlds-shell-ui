@@ -1,0 +1,1 @@
+Delete world?Garden AFlat terrainThis permanently removes the entire world directory and all its data. 3 files · 17 bytesCancelDelete this world
