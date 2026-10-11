@@ -4,6 +4,8 @@ import { readFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
+import { homedir } from 'node:os'
+import { join } from 'node:path'
 import ts from 'typescript'
 const require = createRequire(import.meta.url)
 // app-boot is the exact public development dependency of our declared manager SDK.
@@ -35,7 +37,10 @@ export function checkHost(code) {
 }
 export function verifySupply(root = new URL('../', import.meta.url)) {
   const manifest = JSON.parse(readFileSync(new URL('package.json', root)))
-  const [pack] = JSON.parse(execFileSync('npm', ['pack', '--dry-run', '--json', '--ignore-scripts'], { cwd: fileURLToPath(root), encoding: 'utf8' }))
+  // The local dry-run writes npm cache content. Use the user-level global cache
+  // explicitly so this check does not depend on machine-specific volume config.
+  // Run once; all npm failures and all package-content assertions remain fatal.
+  const [pack] = JSON.parse(execFileSync('npm', ['pack', '--dry-run', '--json', '--ignore-scripts', '--cache', join(homedir(), '.npm')], { cwd: fileURLToPath(root), encoding: 'utf8' }))
   checkSupply(manifest, fileURLToPath(new URL('cordis.patch.yml', root)), pack.files.map(row => row.path))
   checkHost(readFileSync(new URL('lib/index.js', root), 'utf8'))
   console.log('Bundle supply verified: actual pack list, official insert composition, exact own Host/Client exports, empty Host.')

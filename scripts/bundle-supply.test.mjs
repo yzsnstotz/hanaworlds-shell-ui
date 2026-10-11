@@ -86,3 +86,16 @@ test('real official manager selects, lists, deselects and reselects own patch wi
   assert.equal(rejected.skippedBundles[0].packageName, 'broken-shell')
   assert.match(rejected.skippedBundles[0].reason, /missing.yml/)
 })
+
+// Exercise the actual npm pack verification, including npm's cache writes.
+import { spawnSync } from 'node:child_process'
+test('actual pack verification is independent of an unusable inherited npm cache', t => {
+  const unusableCache = join(fixture(t), 'not-a-cache-directory')
+  writeFileSync(unusableCache, 'existing file')
+  const result = spawnSync(process.execPath, ['scripts/verify-bundle-supply.mjs'], {
+    cwd: fileURLToPath(root), encoding: 'utf8',
+    env: { ...process.env, npm_config_cache: unusableCache, NPM_CONFIG_CACHE: unusableCache },
+  })
+  assert.equal(result.status, 0, result.stderr + result.stdout)
+  assert.match(result.stdout, /Bundle supply verified/)
+})
